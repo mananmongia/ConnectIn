@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SocialChemy:ConnectIn</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+  <body style="padding: 30px">
+
+  <% if current_user %>
+    <div style="text-align:right;">
+      <h4><%=link_to "Sign out",destroy_user_session_path,method: :delete %></h4>
+      <%= current_user.email %>
+    </div>
+  <%else %>
+    <div style="text-align:right;">
+
+      <h4><%= link_to "Sign in", new_user_session_path %></h4>
+      <%= link_to "Sign up", new_user_registration_path %>
+    </div>
+  <%end %>
+    <div style="padding:30px;padding-left: 1%;">
+    <%= yield %>
+    </div>
+  <% if notice %>
+    <h6 style="background-color: forestgreen"class="alert"><%= notice %></h6>
+  <% elsif alert%>
+    <h6 style="background-color: goldenrod;" class="alert"><%= alert %></h6>
+  <%end%>
+
+  </body>
+
+
+</html>
